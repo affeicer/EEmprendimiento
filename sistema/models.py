@@ -29,4 +29,12 @@ class Producto(models.Model):
 	Nota = models.CharField(max_length = 60)
 	Tienda = models.ForeignKey(Tienda, on_delete = models.DO_NOTHING)
 
-
+class Venta(models.Model):
+    codigo = models.AutoField(primary_key = True)
+    vendedor = models.ForeignKey(Vendedor, on_delete = models.DO_NOTHING)
+    sucursal = models.ForeignKey(Tienda, on_delete = models.DO_NOTHING)
+    fechaHora = models.DateTimeField(auto_now_add = True)
+    producto = models.ForeignKey(Producto, on_delete = models.DO_NOTHING)
+    cantidad = models.IntegerField()
+    comentario = models.TextField(null = True)
+    anulada = models.BooleanField(default = False)

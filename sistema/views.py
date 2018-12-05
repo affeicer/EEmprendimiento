@@ -171,12 +171,12 @@ def eliminar_vendedor(request, pk):
 		return render(request, "gestion/eliminarVendedorFail.html", { "titulo": "Error al eliminar vendedor" }) # Retorna la vista con el error generado
 
 """
-Gestión de Tiendaes
+Gestión de Tienda
 """
 @login_required
 @staff_member_required
-def gestion_Tiendaes(request):
-	return render(request, "gestion/gestionTiendaes.html", { "titulo": "Gestión de Tiendaes" })
+def gestion_Tienda(request):
+	return render(request, "gestion/gestionTienda.html", { "titulo": "Gestión de Tienda" })
 
 @login_required
 @staff_member_required
@@ -186,7 +186,7 @@ def registrar_Tienda(request):
 		if form.is_valid(): # Inicia el proceso de validación y verifica si los datos ingresados esten correctos
 			data = form.cleaned_data # Extrae los datos ingresados del formulario a esta variable
 			Tienda.objects.create(nombre = data.get("nombre"), ciudad = data.get("ciudad"), comuna = data.get("comuna"), direccion = data.get("direccion"), telefono = data.get("telefono"), correo = data.get("correo")) # Se crea un registro de la Tienda
-			return redirect("gestion_Tiendaes") # Redirecciona al menú de gestión de productos
+			return redirect("gestion_Tienda") # Redirecciona al menú de gestión de productos
 	else: # Se asume que la vista fue solicitada sin envío de formulario
 		form = TiendaForm() # Se instancia un nuevo formulario para ingresar datos del nuevo registro
 	return render(request, "gestion/registrarTienda.html", { "titulo": "Registrar una Tienda", "form": form })
@@ -217,7 +217,7 @@ def actualizar_Tienda(request, pk):
 				Tienda.telefono = data.get("telefono")
 				Tienda.correo = data.get("correo")
 				Tienda.save() # Se guardan los cambios realizados
-				return redirect("gestion_Tiendaes") # Redirecciona al menú de gestión de Tiendaes
+				return redirect("gestion_Tienda") # Redirecciona al menú de gestión de Tienda
 		else: # Se asume que la vista fue solicitada sin envío de formulario
 			form = TiendaForm({ "nombre": Tienda.nombre, "ciudad": Tienda.ciudad, "comuna": Tienda.comuna, "direccion": Tienda.direccion, "telefono": Tienda.telefono, "correo": Tienda.correo }) # Se instancia el formulario con los valores del registro a modificar
 	except ObjectDoesNotExist:  # En caso de que el registro no exista se asignan en nulo las variables Tienda y form
@@ -232,7 +232,7 @@ def eliminar_Tienda(request, pk):
 		Tienda = Tienda.objects.get(codigo = pk) # Obtiene la Tienda solicitada con el identificador que se pasa como parámetro
 		if Tienda: # Verifica que la Tienda existe
 			producto.delete() # Se elimina la Tienda solicitada
-		return redirect("gestion_Tiendaes") # Redirecciona al menú de gestión de Tiendaes
+		return redirect("gestion_Tienda") # Redirecciona al menú de gestión de Tienda
 	except ObjectDoesNotExist: # En caso de algún error se procede a mostrar la página describiendo lo ocurrido
 		return render(request, "gestion/eliminarTiendaError.html", { "titulo": "Error al eliminar Tienda" }) # Retorna la vista con el error generado
 
