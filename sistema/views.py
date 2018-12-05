@@ -119,7 +119,7 @@ def registrar_vendedor(request):
 		if form.is_valid(): # Inicia el proceso de validación y verifica si los datos ingresados esten correctos
 			data = form.cleaned_data # Extrae los datos ingresados del formulario a esta variable
 			user = User.objects.create_user(username = (data.get("nombres")[:2] + "." + data.get("apPaterno")).lower(), password = data.get("run")) # Se crea un usuario que se va a asociar con el vendedor
-			Vendedor.objects.create(usuario = user, run = data.get("run"), nombres = data.get("nombres"), apPaterno = data.get("apPaterno"), apMaterno = data.get("apMaterno"), sucursal = data.get("sucursal")) # Se crea un registro del vendedor
+			Vendedor.objects.create(usuario = user, run = data.get("run"), nombres = data.get("nombres"), apPaterno = data.get("apPaterno"), apMaterno = data.get("apMaterno"), Tienda = data.get("Tienda")) # Se crea un registro del vendedor
 			return redirect("gestion_vendedores") # Redirecciona al menú de gestión de vendedores
 	else: # Se asume que la vista fue solicitada sin envío de formulario
 		form = VendedorForm() # Se instancia un nuevo formulario para ingresar datos del nuevo registro
@@ -148,11 +148,11 @@ def actualizar_vendedor(request, pk):
 				vendedor.nombres = data.get("nombres")
 				vendedor.apPaterno = data.get("apPaterno")
 				vendedor.apMaterno = data.get("apMaterno")
-				vendedor.sucursal = data.get("sucursal")
+				vendedor.Tienda = data.get("Tienda")
 				vendedor.save() # Se guardan los cambios realizados
 				return redirect("gestion_vendedores") # Redirecciona al menú de gestión de vendedores
 		else: # Se asume que la vista fue solicitada sin envío de formulario
-			form = VendedorForm({ "run": vendedor.run, "nombres": vendedor.nombres, "apPaterno": vendedor.apPaterno, "apMaterno": vendedor.apMaterno, "sucursal": vendedor.sucursal }) # Se instancia el formulario con los valores del registro a modificar
+			form = VendedorForm({ "run": vendedor.run, "nombres": vendedor.nombres, "apPaterno": vendedor.apPaterno, "apMaterno": vendedor.apMaterno, "Tienda": vendedor.Tienda }) # Se instancia el formulario con los valores del registro a modificar
 	except ObjectDoesNotExist:  # En caso de que el registro no exista se asignan en nulo las variables vendedor y form
 		vendedor = None
 		form = None
@@ -171,70 +171,70 @@ def eliminar_vendedor(request, pk):
 		return render(request, "gestion/eliminarVendedorFail.html", { "titulo": "Error al eliminar vendedor" }) # Retorna la vista con el error generado
 
 """
-Gestión de sucursales
+Gestión de Tiendaes
 """
 @login_required
 @staff_member_required
-def gestion_sucursales(request):
-	return render(request, "gestion/gestionSucursales.html", { "titulo": "Gestión de sucursales" })
+def gestion_Tiendaes(request):
+	return render(request, "gestion/gestionTiendaes.html", { "titulo": "Gestión de Tiendaes" })
 
 @login_required
 @staff_member_required
-def registrar_sucursal(request):
+def registrar_Tienda(request):
 	if request.method == "POST": # Verifica si la solicitud de esta vista lleva consigo el envío de formulario
-		form = SucursalForm(request.POST) # Se instancia el formulario pasando como parámetro los datos ingresados
+		form = TiendaForm(request.POST) # Se instancia el formulario pasando como parámetro los datos ingresados
 		if form.is_valid(): # Inicia el proceso de validación y verifica si los datos ingresados esten correctos
 			data = form.cleaned_data # Extrae los datos ingresados del formulario a esta variable
-			Sucursal.objects.create(nombre = data.get("nombre"), ciudad = data.get("ciudad"), comuna = data.get("comuna"), direccion = data.get("direccion"), telefono = data.get("telefono"), correo = data.get("correo")) # Se crea un registro de la sucursal
-			return redirect("gestion_sucursales") # Redirecciona al menú de gestión de productos
+			Tienda.objects.create(nombre = data.get("nombre"), ciudad = data.get("ciudad"), comuna = data.get("comuna"), direccion = data.get("direccion"), telefono = data.get("telefono"), correo = data.get("correo")) # Se crea un registro de la Tienda
+			return redirect("gestion_Tiendaes") # Redirecciona al menú de gestión de productos
 	else: # Se asume que la vista fue solicitada sin envío de formulario
-		form = SucursalForm() # Se instancia un nuevo formulario para ingresar datos del nuevo registro
-	return render(request, "gestion/registrarSucursal.html", { "titulo": "Registrar una sucursal", "form": form })
+		form = TiendaForm() # Se instancia un nuevo formulario para ingresar datos del nuevo registro
+	return render(request, "gestion/registrarTienda.html", { "titulo": "Registrar una Tienda", "form": form })
 
 @login_required
 @staff_member_required
-def ver_sucursal(request, pk):
+def ver_Tienda(request, pk):
 	try:
-		sucursal = Sucursal.objects.get(codigo = pk) # Obtiene la sucursal solicitada con el identificador que se pasa como parámetro
-	except ObjectDoesNotExist: # Esta excepción cubre el error cuando el registro de una sucursal no existe
-		sucursal = None # Cuando no exista la sucursal, se asigna como valor nulo a esta variable
-	return render(request, "gestion/verSucursal.html", { "sucursal": sucursal }) # Retorna la vista solicitada
+		Tienda = Tienda.objects.get(codigo = pk) # Obtiene la Tienda solicitada con el identificador que se pasa como parámetro
+	except ObjectDoesNotExist: # Esta excepción cubre el error cuando el registro de una Tienda no existe
+		Tienda = None # Cuando no exista la Tienda, se asigna como valor nulo a esta variable
+	return render(request, "gestion/verTienda.html", { "Tienda": Tienda }) # Retorna la vista solicitada
 
 @login_required
 @staff_member_required
-def actualizar_sucursal(request, pk):
+def actualizar_Tienda(request, pk):
 	try:
-		sucursal = Sucursal.objects.get(codigo = pk) # Obtiene la sucursal solicitada con el identificador que se pasa como parámetro
+		Tienda = Tienda.objects.get(codigo = pk) # Obtiene la Tienda solicitada con el identificador que se pasa como parámetro
 		if request.method == "POST": # Verifica si la solicitud de esta vista lleva consigo el envío de formulario
-			form = SucursalForm(request.POST) # Se instancia el formulario pasando como parámetro los datos ingresados
+			form = TiendaForm(request.POST) # Se instancia el formulario pasando como parámetro los datos ingresados
 			if form.is_valid(): # Inicia el proceso de validación y verifica si los datos ingresados esten correctos
 				data = form.cleaned_data # Extrae los datos ingresados del formulario a esta variable
-				# Se procede la actualización de los datos de la sucursal solicitada
-				sucursal.nombre = data.get("nombre")
-				sucursal.ciudad = data.get("ciudad")
-				sucursal.comuna = data.get("comuna")
-				sucursal.direccion = data.get("direccion")
-				sucursal.telefono = data.get("telefono")
-				sucursal.correo = data.get("correo")
-				sucursal.save() # Se guardan los cambios realizados
-				return redirect("gestion_sucursales") # Redirecciona al menú de gestión de sucursales
+				# Se procede la actualización de los datos de la Tienda solicitada
+				Tienda.nombre = data.get("nombre")
+				Tienda.ciudad = data.get("ciudad")
+				Tienda.comuna = data.get("comuna")
+				Tienda.direccion = data.get("direccion")
+				Tienda.telefono = data.get("telefono")
+				Tienda.correo = data.get("correo")
+				Tienda.save() # Se guardan los cambios realizados
+				return redirect("gestion_Tiendaes") # Redirecciona al menú de gestión de Tiendaes
 		else: # Se asume que la vista fue solicitada sin envío de formulario
-			form = SucursalForm({ "nombre": sucursal.nombre, "ciudad": sucursal.ciudad, "comuna": sucursal.comuna, "direccion": sucursal.direccion, "telefono": sucursal.telefono, "correo": sucursal.correo }) # Se instancia el formulario con los valores del registro a modificar
-	except ObjectDoesNotExist:  # En caso de que el registro no exista se asignan en nulo las variables sucursal y form
-		sucursal = None
+			form = TiendaForm({ "nombre": Tienda.nombre, "ciudad": Tienda.ciudad, "comuna": Tienda.comuna, "direccion": Tienda.direccion, "telefono": Tienda.telefono, "correo": Tienda.correo }) # Se instancia el formulario con los valores del registro a modificar
+	except ObjectDoesNotExist:  # En caso de que el registro no exista se asignan en nulo las variables Tienda y form
+		Tienda = None
 		form = None
-	return render(request, "gestion/actualizarSucursal.html", { "titulo": "Actualizar sucursal", "form": form, "sucursal": sucursal }) # Retorna la vista solicitada
+	return render(request, "gestion/actualizarTienda.html", { "titulo": "Actualizar Tienda", "form": form, "Tienda": Tienda }) # Retorna la vista solicitada
 
 @login_required
 @staff_member_required
-def eliminar_sucursal(request, pk):
+def eliminar_Tienda(request, pk):
 	try:
-		sucursal = Sucursal.objects.get(codigo = pk) # Obtiene la sucursal solicitada con el identificador que se pasa como parámetro
-		if sucursal: # Verifica que la sucursal existe
-			producto.delete() # Se elimina la sucursal solicitada
-		return redirect("gestion_sucursales") # Redirecciona al menú de gestión de sucursales
+		Tienda = Tienda.objects.get(codigo = pk) # Obtiene la Tienda solicitada con el identificador que se pasa como parámetro
+		if Tienda: # Verifica que la Tienda existe
+			producto.delete() # Se elimina la Tienda solicitada
+		return redirect("gestion_Tiendaes") # Redirecciona al menú de gestión de Tiendaes
 	except ObjectDoesNotExist: # En caso de algún error se procede a mostrar la página describiendo lo ocurrido
-		return render(request, "gestion/eliminarSucursalError.html", { "titulo": "Error al eliminar sucursal" }) # Retorna la vista con el error generado
+		return render(request, "gestion/eliminarTiendaError.html", { "titulo": "Error al eliminar Tienda" }) # Retorna la vista con el error generado
 
 """
 Módulo de ventas
@@ -250,7 +250,7 @@ def registrar_venta(request):
 		vendedor = Vendedor.objects.get(usuario = request.user)
 		if form.is_valid(): # Inicia el proceso de validación y verifica si los datos ingresados esten correctos
 			data = form.cleaned_data # Extrae los datos ingresados del formulario a esta variable
-			Venta.objects.create(vendedor = vendedor, sucursal = vendedor.sucursal, producto = data.get("producto"), cantidad = data.get("cantidad"), comentario = data.get("comentario")) # Se registra una nueva venta
+			Venta.objects.create(vendedor = vendedor, Tienda = vendedor.Tienda, producto = data.get("producto"), cantidad = data.get("cantidad"), comentario = data.get("comentario")) # Se registra una nueva venta
 			return redirect("modulo_ventas") # Redirecciona al menú de gestión de vendedores
 	else: # Se asume que la vista fue solicitada sin envío de formulario
 		form = VentaForm() # Se instancia un nuevo formulario para ingresar datos del nuevo registro
