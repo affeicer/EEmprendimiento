@@ -1,0 +1,65 @@
+* {
+	margin: 0;
+	padding: 0;
+	/*se define como se calcularán los cuadrados en base al ancho y al alto con respecto al padding
+	content-box indica que todo será sin considerar padding o bordes
+	border-box indica que se incluyen en los calculos bordes y padding
+	initial se fija el valor por defecto, depende del dispositivo y el navegador
+	inherit utiliza el valor del contenedor del elemento
+	*/
+	box-sizing: border-box;
+
+}
+
+@font-face {
+    font-family: 'Fortnite'; /*a name to be used later*/
+    src: url('../images/Fuente.otf'); /*URL to font*/
+}
+div .loginbox{
+	align-items: center;
+}
+form.loginform {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: auto;
+  display: flex;
+	flex-flow: column;
+	text-align: center;
+	padding: 50px;
+}
+
+/*margen de los campos*/
+input[type='text'], [type='email'],[type='password']{
+    border: solid 1px #78788c;
+    color: #5a5a6e;
+}
+
+input[type=submit] {
+  padding:5px 15px;
+  background:#96D1B8;
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+	border-radius: 5px;
+	width: 100px;
+  height: 40px;
+  margin: auto;
+}
+
+
+table{
+    text-align: center;
+}
+td{
+    align-self: center;
+}
+
+tr {
+  display: flex;
+	flex-flow: column;
+	padding: 10px;
+}
+.loginbox {
+	background: #fff;
+  box-shadow: 1px 1px 2px white, 0 0 2em white, 0 0 0.2em white;
+  font-size: 30px;
+}

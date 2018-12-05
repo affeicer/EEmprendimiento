@@ -1,0 +1,291 @@
+* {
+	margin: 0;
+	padding: 0;
+	/*se define como se calcularán los cuadrados en base al ancho y al alto con respecto al padding
+	content-box indica que todo será sin considerar padding o bordes
+	border-box indica que se incluyen en los calculos bordes y padding
+	initial se fija el valor por defecto, depende del dispositivo y el navegador
+	inherit utiliza el valor del contenedor del elemento
+	*/
+	box-sizing: border-box;
+
+}
+
+@font-face {
+    font-family: 'Fortnite'; /*a name to be used later*/
+    src: url('../images/Fuente.otf'); /*URL to font*/
+}
+
+.contenedor {
+	background:#2B6B75;
+	width:80%;
+	margin:auto;
+	padding-top: 100px;
+	display:flex;
+	flex-flow:row wrap;
+	background-image: url("./banner.jpg")
+
+}
+
+body {
+	background-image: url("./background.jpg");
+	background-size: cover;
+}
+
+.topbar {
+	width: 100%;
+  position: fixed;
+  text-align: right;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 30px;
+  background-color: #3c3c3b;
+  padding: 4px 12px 3px 0;
+  font-family: monospace;
+}
+
+.topbar a {
+    color: white;
+}
+
+.topbar ul li {
+    display: inline;
+	margin-left: 10px;
+}
+
+.down {
+	visibility: hidden;
+	position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+
+}
+
+header {
+	background:#004e5a00;
+	width:100%;
+	display: flex;
+	justify-content:space-between;
+	align-items:center;
+	flex-direction:row;
+	flex-wrap:wrap;
+}
+
+header .logo {
+	color:#fff;
+	font-size:10px;
+	padding: 5px;
+	align-items: right;
+}
+
+header .logo img {
+
+	height: 90px;
+  width: 290px;
+}
+
+header .logo a {
+	color:#fff;
+	text-decoration: none;
+	line-height:50px;
+	display: none;
+}
+
+header nav {
+	width:100%;
+	display:flex;
+	flex-wrap:wrap;
+	align-items:center;
+}
+
+form.regprod {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: auto;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    padding: 50px;
+}
+
+input[type=text] {
+    padding:5px;
+    border:2px solid #ccc;
+    -webkit-border-radius: 5px;
+	border-radius: 5px;
+	width: 190px;
+}
+
+input[type=password] {
+    padding:5px;
+    border:2px solid #ccc;
+    -webkit-border-radius: 5px;
+	border-radius: 5px;
+	width: 190px;
+}
+input[type=password]:focus {
+    border-color:#333;
+}
+
+input[type=submit] {
+    padding:5px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+	border-radius: 5px;
+	width: 100px;
+    height: 40px;
+    margin: auto;
+}
+
+table#tablalogin {
+	margin: auto;
+	padding: 10px;
+}
+
+tr {
+    display: flex;
+	flex-flow: column;
+	padding: 10px;
+}
+
+header nav a {
+	background:#73A2A6;
+	color:#fff;
+	text-align: center;
+	text-decoration: none;
+	padding:10px;
+
+	/* Flexbox */
+	flex-grow:1; /*Especifica el numero maximo de items flex que pueden adecuarse en una zona*/
+}
+
+header nav a:hover {
+	background: #00b2aa;
+}
+
+.main {
+	background:#D7F4EC;
+	padding:80px 20px 80px 20px;
+
+	flex:1 1 70%;/*Establece que sera un 70% del ancho del contenedor
+	1 es el numero máximo de items flex
+	1 estabñece que será automático el ajuste, es decir no cambiará su escala en base a los dimensionamientos
+
+	*/
+
+	/*flex:1;*/
+}
+
+.main article {
+	margin-bottom: 20px;
+	padding-bottom:20px;
+	border-bottom:1px solid #000;
+}
+
+.main article:nth-last-child(1){
+	margin-bottom: 0;
+	padding-bottom: 0;
+	border-bottom:none;
+}
+
+aside {
+	background:#e67e22;
+	padding:20px;
+	/*FLEX*/
+	flex:1 1 30%;
+	/*flex:0 0 300px;*/
+
+	display: flex;
+	flex-wrap:wrap;
+	flex-direction:column;
+	justify-content:flex-start;
+}
+
+aside .widget {
+	background: #d35400;
+	height:150px;
+	margin:10px;
+}
+
+footer {
+	background:#EFEFEF;
+	width: 100%;
+	padding:20px;
+
+	/* Flexbox */
+	display: flex;
+	flex-wrap:wrap;
+	justify-content:space-between;
+}
+
+footer .links {
+	background:#c0392b;
+	display:flex;
+	flex-wrap:wrap;
+}
+
+footer .links a {
+	flex-grow:1;
+
+	color:#fff;
+	padding:10px;
+	text-align: center;
+	text-decoration:none;
+}
+
+footer .links a:hover {
+	background:#E74C3C;
+}
+
+footer .social {
+	background:#e67e22;
+}
+
+footer .social a {
+	color:#fff;
+	text-decoration: none;
+	padding:10px;
+	display: inline-block;
+}
+
+@media screen and (max-width: 800px) {
+	/*https://www.w3schools.com/cssref/css3_pr_mediaquery.asp*/
+	.contenedor {
+		flex-direction:column;
+	}
+
+	header {
+		flex-direction:column;
+		padding:0;
+	}
+
+	header .logo {
+		margin:20px 0;
+	}
+
+	header nav {
+		width: 100%;
+	}
+
+	aside {
+		flex-direction:row;
+		flex:0;
+	}
+
+	aside .widget {
+		flex-grow:1;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	aside {
+		flex-direction:column;
+	}
+
+	footer {
+		justify-content:space-around;
+	}
+}
