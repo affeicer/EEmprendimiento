@@ -1,11 +1,11 @@
-# Tienda Electrónica
+
 Asignatura: Desarrollo de aplicaciones web y mobile
 
-Sección: DWY4101-003D
+Sección: DWY4101
+
+Examen: Forma A 
 
 Integrantes:
-
-* Raul Flores
-* Jorge Fuica
-* Francisco Ramírez
-* Manuel Yávar
+           Ronal Olate
+           Nicolas Lavin
+           Nicolas Iturra
