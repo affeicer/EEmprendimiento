@@ -5,16 +5,16 @@
 	<tr>
 		<th>Código</th>
 		<th>Nombre</th>
-		<th>Descripción</th>
-		<th>Precio</th>
-		<th>Foto</th>
+		<th>Costo presupuestado</th>
+		<th>Costo real</th>
+		<th>Nota</th>
 	</tr>
 	<tr>
 		<td>{{ producto.codigo }}</td>
 		<td>{{ producto.nombre }}</td>
-		<td>{{ producto.descripcion }}</td>
-		<td>{{ producto.precio }}</td>
-		<td><img src="{{ producto.foto.url }}" alt="Foto de {{ producto.nombre }}"></td>
+		<td>{{ producto.Costo_p }}</td>
+		<td>{{ producto.Costo_real }}</td>
+		<td>{{ producto.Nota }}</td>
 	</tr>
 </table>
 {% else %}

@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Sucursal(models.Model):
+class Tienda(models.Model):
 	codigo = models.AutoField(primary_key = True)
 	nombre = models.CharField(max_length = 30)
 	direccion = models.CharField(max_length = 50)
@@ -19,22 +19,14 @@ class Vendedor(models.Model):
 	apPaterno = models.CharField(max_length = 20)
 	apMaterno = models.CharField(max_length = 20)
 	encargado = models.BooleanField(default = True)
-	sucursal = models.ForeignKey(Sucursal, on_delete = models.DO_NOTHING)
+	Tienda = models.ForeignKey(Tienda, on_delete = models.DO_NOTHING)
 
 class Producto(models.Model):
 	codigo = models.AutoField(primary_key = True)
 	nombre = models.CharField(max_length = 50)
-	descripcion = models.TextField()
-	precio = models.IntegerField()
-	tipo = models.CharField(max_length = 20)
-	foto = models.ImageField(upload_to = "productos", blank = True, null = True)
+	Costo_p = models.IntegerField()
+	Costo_real = models.IntegerField()
+	Nota = models.CharField(max_length = 60)
+	Tienda = models.ForeignKey(Tienda, on_delete = models.DO_NOTHING)
 
-class Venta(models.Model):
-	codigo = models.AutoField(primary_key = True)
-	vendedor = models.ForeignKey(Vendedor, on_delete = models.DO_NOTHING)
-	sucursal = models.ForeignKey(Sucursal, on_delete = models.DO_NOTHING)
-	fechaHora = models.DateTimeField(auto_now_add = True)
-	producto = models.ForeignKey(Producto, on_delete = models.DO_NOTHING)
-	cantidad = models.IntegerField()
-	comentario = models.TextField(null = True)
-	anulada = models.BooleanField(default = False)
+

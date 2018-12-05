@@ -3,7 +3,7 @@
 <html lang="es">
 	<head>
 		<meta charset="utf-8"> <!-- Codificación unviersal de la página -->
-		<title>Módulo de administración de Electronic Solutions</title>
+		<title>Administración de lista de compras</title>
 		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximun-scale=1.0,minimun-scale=1.0"> <!-- Permite que la página se adapte al tamaño de los dispositivos -->
 		<link rel="stylesheet" type="text/css" href="{% static 'css/gestion.css' %}">
 	</head>
@@ -20,8 +20,7 @@
 							<button class="dropbtn">Mantenimiento<i class="fa fa-caret-down"></i></button>
 							<div class="dropdown-content">
 								<a href="{% url 'gestion_productos' %}">Gestión de productos</a>
-								<a href="{% url 'gestion_sucursales' %}">Gestión de sucursales</a>
-								<a href="#">Gestión de ofertas</a>
+								<a href="{% url 'gestion_Tiendas' %}">Gestión de Tiendas</a>
 								<a href="{% url 'gestion_vendedores' %}">Gestión de vendedores</a>
 							</div>
 						</div>

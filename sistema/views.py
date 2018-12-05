@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
-from sistema.forms import ProductoForm, VendedorForm, SucursalForm, VentaForm, LoginForm
-from sistema.models import Producto, Vendedor, Sucursal, Venta
+from sistema.forms import ProductoForm, VendedorForm, TiendaForm, VentaForm, LoginForm
+from sistema.models import Producto, Vendedor, Tienda, Venta
 
 # Create your views here.
 def index(request):
