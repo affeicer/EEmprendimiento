@@ -24,7 +24,7 @@ def iniciar_sesion(request):
 			user = authenticate(username = data.get("username"), password = data.get("password")) # Proceso de autenticación de credenciales
 			if user: # Verifica si el usuario es válido
 				login(request, user) # En caso de que sea válido se abre una sesión para dicho usuario ingresado
-				return redirect("index") # Redirecciona a la página principal
+				return redirect("../gestion") # Redirecciona a la página principal
 			login_fail = True # Si no son válidas las credenciales, este estado pasa a ser verdadero
 	form = LoginForm() # Se instancia el formulario
 	return render(request, "login.html", { "titulo": "Iniciar sesión", "form": form, "login_fail": login_fail }) # Retorna la vista solicitada
@@ -176,7 +176,7 @@ Gestión de Tienda
 @login_required
 @staff_member_required
 def gestion_Tienda(request):
-	return render(request, "gestion/gestionTienda.html", { "titulo": "Gestión de Tienda" })
+	return render(request, "gestion/gestionTiendas.html", { "titulo": "Gestión de Tienda" })
 
 @login_required
 @staff_member_required
@@ -199,6 +199,12 @@ def ver_Tienda(request, pk):
 	except ObjectDoesNotExist: # Esta excepción cubre el error cuando el registro de una Tienda no existe
 		Tienda = None # Cuando no exista la Tienda, se asigna como valor nulo a esta variable
 	return render(request, "gestion/verTienda.html", { "Tienda": Tienda }) # Retorna la vista solicitada
+
+@login_required
+@staff_member_required
+def ver_todas_Tienda(request):
+	tienda = Tienda.objects.all()
+	return render(request, "gestion/listarTienda.html", { "Tienda": tienda }) # Retorna la vista solicitada
 
 @login_required
 @staff_member_required

@@ -21,6 +21,6 @@ urlpatterns = [
 	url(r"^gestion/Tienda/(?P<pk>[0-9]+)$", views.ver_Tienda, name = "ver_Tienda"),
 	url(r"^gestion/Tienda/actualizar/(?P<pk>[0-9]+)$", views.actualizar_Tienda, name = "actualizar_Tienda"),
 	url(r"^gestion/Tienda/eliminar/(?P<pk>[0-9]+)$", views.eliminar_Tienda, name = "eliminar_Tienda"),
-
+	url(r"^gestion/Tienda/listar$", views.ver_todas_Tienda, name = "listar_tienda"),
 
 ]

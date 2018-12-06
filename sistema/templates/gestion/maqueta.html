@@ -6,13 +6,15 @@
 		<title>Administración de lista de compras</title>
 		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximun-scale=1.0,minimun-scale=1.0"> <!-- Permite que la página se adapte al tamaño de los dispositivos -->
 		<link rel="stylesheet" type="text/css" href="{% static 'css/gestion.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.min.css' %}">
 	</head>
 	<body>
 		<div id="container">
 			<header>
 				<div id="left-side">
 					<div class="logo">
-						<img src="{% static 'images/logo.png' %}" alt="Logo Electronic Solutions">
+						<center><img src="{% static 'images/logo.png' %}" width="300" alt="Logo Electronic Solutions"></center>
 					</div>
 					<nav class="navbar">
 						<a href="{% url 'menu_gestion' %}">Inicio</a>
@@ -20,16 +22,14 @@
 							<button class="dropbtn">Mantenimiento<i class="fa fa-caret-down"></i></button>
 							<div class="dropdown-content">
 								<a href="{% url 'gestion_productos' %}">Gestión de productos</a>
-								<a href="{% url 'gestion_Tiendas' %}">Gestión de Tiendas</a>
-								<a href="{% url 'gestion_vendedores' %}">Gestión de vendedores</a>
+								<a href="{% url 'gestion_Tienda' %}">Gestión de Tiendas</a>
 							</div>
 						</div>
-						<a href="#">Ventas</a>
 					</nav>
 				</div>
 				<div id="right-side">
 					<p>Hola, {{ user.first_name }}</p>
-					<a href="{% url 'logout' %}">Cerrar sesión</a>
+					<a class="btn btn-danger" href="{% url 'logout' %}">Cerrar sesión</a>
 				</div>
 			</header>
 
@@ -38,7 +38,7 @@
 			</section>
 
 			<footer>
-				bla
+
 			</footer>
 		</div>
 	</body>

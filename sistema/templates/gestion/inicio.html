@@ -1,15 +1,14 @@
 {% extends "gestion/maqueta.html" %}
 {% block content %}
-<table>
-	<tr><td colspan="2">Mantenimiento</td></tr>
-	<tr>
-		<td>Productos</td>
-		<td>{{ cant_productos }}</td>
-	</tr>
-	<tr>
-		<td>Tiendas</td>
-		<td>{{ cant_suc }}</td>
-	</tr>
-</table>
-
+<div class="col-xs-12 col-lg-6 mx-auto">
+	<div class="text-center">
+		<br>
+		<nav class="nav flex-column">
+			<a class="nav-link active text-white bg-dark" href="{% url 'gestion_Tienda' %}">Gestion de Tiendas</a>
+			<br>
+			<a class="nav-link text-white bg-dark" href="{% url 'gestion_productos' %}">Gestion de Productos</a>
+		</nav>
+		<br>
+	</div>
+</div>
 {% endblock %}

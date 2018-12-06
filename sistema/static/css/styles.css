@@ -23,12 +23,12 @@
 	padding-top: 100px;
 	display:flex;
 	flex-flow:row wrap;
-	background-image: url("./banner.jpg")
-
+	background-image: url("../images/banner.jpg");
+	background-size: cover;
 }
 
 body {
-	background-image: url("./background.jpg");
+	/*background-image: url("./background.jpg");*/
 	background-size: cover;
 }
 
@@ -77,13 +77,13 @@ header .logo {
 	color:#fff;
 	font-size:10px;
 	padding: 5px;
-	align-items: right;
+	align-items: center;
 }
 
 header .logo img {
 
-	height: 90px;
-  width: 290px;
+	height: 82,75px;
+  width: 142,5px;
 }
 
 header .logo a {
