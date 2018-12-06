@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from sistema.forms import *
 from sistema.models import *
+from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView
 
 # Create your views here.
 def index(request):

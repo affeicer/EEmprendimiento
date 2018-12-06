@@ -1,11 +1,12 @@
 from django.conf.urls import url
 from . import views
 
+
 urlpatterns = [
 	url(r"^$", views.index, name = "index"),
 	url(r"^cuentas/login$", views.iniciar_sesion, name = "login"),
 	url(r"^cuentas/logout$", views.cerrar_sesion, name = "logout"),
-	url(r'^cuentas/registrar$', usuario_add, name='agregar_usuario'),
+	url(r'^cuentas/registrar$', views.CrearUsuarios, name='agregar_usuario'),
 	url(r"^gestion$", views.menu_gestion, name = "menu_gestion"),
 
 	# Productos
@@ -28,5 +29,10 @@ urlpatterns = [
 	url(r"^gestion/vendedores/actualizar/(?P<pk>[0-9]+)$", views.actualizar_vendedor, name = "actualizar_vendedor"),
 	url(r"^gestion/vendedores/eliminar/(?P<pk>[0-9]+)$", views.eliminar_vendedor, name = "eliminar_vendedor"),
 
-
+	# Ventas
+	url(r"^ventas$", views.modulo_ventas, name = "modulo_ventas"),
+	url(r"^ventas/registrar$" ,views.registrar_venta, name = "registrar_venta"),
+	url(r"^ventas/(?P<pk>[0-9]+)$", views.ver_venta, name = "ver_venta"),
+	url(r"^ventas/actualizar/(?P<pk>[0-9]+)$", views.actualizar_venta, name = "actualizar_venta"),
+	url(r"^ventas/anular/(?P<pk>[0-9]+)$", views.anular_venta, name = "anular_venta"),
 ]
