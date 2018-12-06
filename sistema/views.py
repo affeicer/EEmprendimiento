@@ -176,7 +176,7 @@ Gestión de Tienda
 @login_required
 @staff_member_required
 def gestion_Tienda(request):
-	return render(request, "gestion/gestionTienda.html", { "titulo": "Gestión de Tienda" })
+	return render(request, "gestion/gestionTienda.html", { "titulo": "Gestión de Tiendas" })
 
 @login_required
 @staff_member_required

@@ -1,24 +1,30 @@
 from django import forms
-from .models import Producto, Tienda
+from .models import *
 
 CIUDADES = []
 COMUNAS = []
 TIPOS = (
 	("Procesadores", "Procesadores"),
 )
+Estados = [
+	("Activo", "Activo"),
+	("En espera", "En espera"),
+]
+#
+class VentaForm(forms.Form):
+	vendedor = forms.ModelChoiceField(label = "Vendedor", queryset = Vendedor.objects.all(), widget = forms.Select(attrs = { "id": "vendedor" }))
+	cantidad = forms.IntegerField(label = "Cantidad", widget = forms.NumberInput(attrs = { "id": "cantidad" }))
+	comentario = forms.CharField(label = "Comentario", required = False, widget = forms.Textarea(attrs = { "id": "comentario", "placeholder": "Ingrese comentario de la venta" }))
+	Tienda = forms.ModelChoiceField(label = "Tienda", queryset = Tienda.objects.all(), widget = forms.Select(attrs = { "id": "tienda" }))
+	fechaHora = forms.DateTimeField(label = "Fecha", widget = forms.DateInputattrs(attrs = { "id": "fechaHora" }))
 
 # Formularios
-# Formularios
-class VentaForm(forms.Form):
-    producto = forms.ModelChoiceField(label = "Producto", queryset = Producto.objects.all(), widget = forms.Select(attrs = { "id": "producto" }))
-    cantidad = forms.IntegerField(label = "Cantidad", widget = forms.NumberInput(attrs = { "id": "cantidad" }))
-    comentario = forms.CharField(label = "Comentario", required = False, widget = forms.Textarea(attrs = { "id": "comentario", "placeholder": "Ingrese comentario de la venta" }))
 class ProductoForm(forms.Form):
 	nombre = forms.CharField(label = "Nombre", widget = forms.TextInput(attrs = { "id": "nombre", "placeholder": "Ingrese nombre del producto"}))
-	descripcion = forms.CharField(label = "Descripción", widget = forms.Textarea(attrs = { "id": "descripcion", "placeholder": "Ingrese descripción del producto" }))
-	precio = forms.IntegerField(label = "Precio", widget = forms.NumberInput(attrs = { "id": "precio" }))
-	tipo = forms.ChoiceField(label = "Tipo de producto", choices = TIPOS, widget = forms.Select(attrs = { "id": "tipo" }))
-	foto = forms.ImageField(label = "Foto", required = False, widget = forms.ClearableFileInput(attrs = { "id": "foto" }))
+	Costo_p = forms.IntegerField(label = "Costo Presupuestado", widget = forms.NumberInput(attrs = { "id": "Costo_p" }))
+	Costo_real = forms.IntegerField(label = "Costo Real", widget = forms.NumberInput(attrs = { "id": "Costo_real" }))
+	Nota = forms.CharField(label = "Notas respecto del producto", widget = forms.TextInput(attrs = { "id": "Nota" , "placeholder": "Ingrese nombre del producto"}))
+	Tienda = forms.ModelChoiceField(label = "Tienda", queryset = Tienda.objects.all(), widget = forms.Select(attrs = { "id": "tienda" }))
 
 class VendedorForm(forms.Form):
 	run = forms.CharField(label = "RUN", widget = forms.TextInput(attrs = { "id": "run", "placeholder": "12345678-9" }))
@@ -34,6 +40,7 @@ class TiendaForm(forms.Form):
 	direccion = forms.CharField(label = "Dirección", widget = forms.TextInput(attrs = { "id": "direccion", "placeholder": "Calle Falsa #123"}))
 	telefono = forms.IntegerField(label = "Teléfono", widget = forms.TextInput(attrs = { "id": "telefono", "placeholder": "123456789"}))
 	correo = forms.EmailField(label = "Correo electrónico", widget = forms.EmailInput(attrs = { "id": "correo", "placeholder": "direccion@correo.com" }))
+	Estado = forms.ChoiceField(label = "Estado Tienda", choices = Estados, widget = forms.Select(attrs ={"id": "estado"})
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label = "Nombre de usuario", widget = forms.TextInput(attrs = { "id": "username", "placeholder": "Ingrese nombre de usuario" }))
