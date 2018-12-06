@@ -5,7 +5,7 @@ urlpatterns = [
 	url(r"^$", views.index, name = "index"),
 	url(r"^cuentas/login$", views.iniciar_sesion, name = "login"),
 	url(r"^cuentas/logout$", views.cerrar_sesion, name = "logout"),
-
+	url(r'^cuentas/registrar$', usuario_add, name='agregar_usuario'),
 	url(r"^gestion$", views.menu_gestion, name = "menu_gestion"),
 
 	# Productos

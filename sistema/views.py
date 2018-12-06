@@ -4,12 +4,20 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
-from sistema.forms import ProductoForm, VendedorForm, TiendaForm, VentaForm, LoginForm
-from sistema.models import Producto, Vendedor, Tienda, Venta
+from sistema.forms import *
+from sistema.models import *
 
 # Create your views here.
 def index(request):
 	return render(request, "index.html", { "titulo": "Inicio" }) # Retorna la vista solicitada
+
+
+class CrearUsuarios(CreateView):
+    form_class = UserForm
+    template_name = 'tienda/CrearTienda.html'
+    model = User
+    success_url = 'productos/CrearProducto.html'
+
 
 # Inicio de sesión
 def iniciar_sesion(request):
