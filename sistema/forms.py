@@ -16,7 +16,7 @@ class VentaForm(forms.Form):
 	cantidad = forms.IntegerField(label = "Cantidad", widget = forms.NumberInput(attrs = { "id": "cantidad" }))
 	comentario = forms.CharField(label = "Comentario", required = False, widget = forms.Textarea(attrs = { "id": "comentario", "placeholder": "Ingrese comentario de la venta" }))
 	Tienda = forms.ModelChoiceField(label = "Tienda", queryset = Tienda.objects.all(), widget = forms.Select(attrs = { "id": "tienda" }))
-	fechaHora = forms.DateTimeField(label = "Fecha", widget = forms.DateInputattrs(attrs = { "id": "fechaHora" }))
+	fechaHora = forms.DateTimeField(label = "Fecha", widget = forms.DateInput(attrs = { "id": "fechaHora" }))
 
 # Formularios
 class ProductoForm(forms.Form):
@@ -40,7 +40,7 @@ class TiendaForm(forms.Form):
 	direccion = forms.CharField(label = "Dirección", widget = forms.TextInput(attrs = { "id": "direccion", "placeholder": "Calle Falsa #123"}))
 	telefono = forms.IntegerField(label = "Teléfono", widget = forms.TextInput(attrs = { "id": "telefono", "placeholder": "123456789"}))
 	correo = forms.EmailField(label = "Correo electrónico", widget = forms.EmailInput(attrs = { "id": "correo", "placeholder": "direccion@correo.com" }))
-	Estado = forms.ChoiceField(label = "Estado Tienda", choices = Estados, widget = forms.Select(attrs ={"id": "estado"})
+	Estado = forms.ChoiceField(label = "Estado Tienda", choices = Estados, widget = forms.Select(attrs ={"id": "estado"}))
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label = "Nombre de usuario", widget = forms.TextInput(attrs = { "id": "username", "placeholder": "Ingrese nombre de usuario" }))
