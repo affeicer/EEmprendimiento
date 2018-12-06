@@ -12,6 +12,9 @@ class Tienda(models.Model):
 	correo = models.EmailField()
 	Estado = models.CharField(max_length = 30)
 
+	def __str__(self):
+		return '{}'.format(self.nombre)
+
 
 class Vendedor(models.Model):
 	codigo = models.AutoField(primary_key = True)
