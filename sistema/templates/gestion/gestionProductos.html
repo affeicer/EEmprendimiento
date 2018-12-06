@@ -1,4 +1,14 @@
 {% extends "gestion/maqueta.html" %}
 {% block content %}
-
+<div class="col-xs-12 col-lg-6 mx-auto">
+  <div class="text-center">
+    <br>
+    <nav class="nav flex-column">
+      <a class="nav-link active text-white bg-dark" href="{% url 'registrar_producto' %}">Agregar Producto</a>
+      <br>
+      <a class="nav-link text-white bg-dark" href="">Listar, modificar y eliminar Producto</a>
+    </nav>
+    <br>
+  </div>
+</div>
 {% endblock %}
