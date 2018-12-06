@@ -55,7 +55,7 @@ def registrar_producto(request):
 		form = ProductoForm(request.POST, request.FILES) # Se instancia el formulario pasando como parámetro los datos ingresados
 		if form.is_valid(): # Inicia el proceso de validación y verifica si los datos ingresados esten correctos
 			data = form.cleaned_data # Extrae los datos ingresados del formulario a esta variable
-			Producto.objects.create(nombre = data.get("nombre"), descripcion = data.get("descripcion"), precio = data.get("precio"), tipo = data.get("tipo"), foto = data.get("foto")) # Se añade un nuevo registro de producto a la base de datos
+			Producto.objects.create(nombre = data.get("nombre"), Costo_p = data.get("Costo_p"), Costo_real = data.get("Costo_real"), Nota = data.get("Nota"), Tienda = data.get("Tienda")) # Se añade un nuevo registro de producto a la base de datos
 			return redirect("gestion_productos") # Redirecciona al menú de gestión de productos
 	else: # Se asume que la vista fue solicitada sin envío de formulario
 		form = ProductoForm() # Se instancia un nuevo formulario para ingresar datos del nuevo registro
@@ -79,14 +79,14 @@ def actualizar_producto(request, pk):
 				data = form.cleaned_data # Extrae los datos ingresados del formulario a esta variable
 				# Se procede la actualización de los datos del producto solicitado
 				producto.nombre = data.get("nombre")
-				producto.descripcion = data.get("descripcion")
-				producto.precio = data.get("precio")
-				if request.FILES.get("foto"):
-					producto.foto = request.FILES["foto"]
+				producto.Costo_p = data.get("Costo_p")
+				producto.Costo_real = data.get("Costo_real")
+				producto.Nota = data.get("Nota")
+				producto.Tienda = data.get("Tienda")
 				producto.save() # Se guardan los cambios realizados
 				return redirect("gestion_productos") # Redirecciona al menú de gestión de productos
 		else: # Se asume que la vista fue solicitada sin envío de formulario
-			form = ProductoForm({ "nombre": producto.nombre, "descripcion": producto.descripcion, "precio": producto.precio, "foto": producto.foto }) # Se instancia el formulario con los valores del registro a modificar
+			form = ProductoForm({ "nombre": producto.nombre, "Costo_p": producto.Costo_p, "Costo_real": producto.Costo_real, "Nota": producto.Nota, "Tienda": producto.Tienda }) # Se instancia el formulario con los valores del registro a modificar
 	except ObjectDoesNotExist: # En caso de que el registro no exista se asignan en nulo las variables producto y form
 		producto = None
 		form = None
@@ -176,7 +176,7 @@ Gestión de Tienda
 @login_required
 @staff_member_required
 def gestion_Tienda(request):
-	return render(request, "gestion/gestionTienda.html", { "titulo": "Gestión de Tiendas" })
+	return render(request, "gestion/gestionTiendas.html", { "titulo": "Gestión de Tiendas" })
 
 @login_required
 @staff_member_required
@@ -185,7 +185,7 @@ def registrar_Tienda(request):
 		form = TiendaForm(request.POST) # Se instancia el formulario pasando como parámetro los datos ingresados
 		if form.is_valid(): # Inicia el proceso de validación y verifica si los datos ingresados esten correctos
 			data = form.cleaned_data # Extrae los datos ingresados del formulario a esta variable
-			Tienda.objects.create(nombre = data.get("nombre"), ciudad = data.get("ciudad"), comuna = data.get("comuna"), direccion = data.get("direccion"), telefono = data.get("telefono"), correo = data.get("correo")) # Se crea un registro de la Tienda
+			Tienda.objects.create(nombre = data.get("nombre"), ciudad = data.get("ciudad"), comuna = data.get("comuna"), direccion = data.get("direccion"), telefono = data.get("telefono"), correo = data.get("correo"), Estado= data.get("Estado")) # Se crea un registro de la Tienda
 			return redirect("gestion_Tienda") # Redirecciona al menú de gestión de productos
 	else: # Se asume que la vista fue solicitada sin envío de formulario
 		form = TiendaForm() # Se instancia un nuevo formulario para ingresar datos del nuevo registro
