@@ -1,17 +1,14 @@
 {% extends "gestion/maqueta.html" %}
 {% block content %}
-<table>
-	<tr>
-		<th>Código</th>
-		<th>Nombre</th>
-		<th>Ubicación</th>
-	</tr>
-	{% for s in Tiendas %}
-	<tr>
-		<td>{{ s.codigo }}</td>
-		<td>{{ s.nombre }}</td>
-		<td>{{ s.direccion }}, {{ s.comuna }}, {{ s.ciudad }}</td>
-	</tr>
-	{% endfor %}
-</table>
+	<div class="col-xs-12 col-lg-6 mx-auto">
+		<div class="text-center">
+			<br>
+			<nav class="nav flex-column">
+				<a class="nav-link active text-white bg-dark" href="{% url 'registrar_Tienda' %}">Agregar Tienda</a>
+				<br>
+				<a class="nav-link text-white bg-dark" href="{% url 'listar_tienda' %}">Listar, modificar y eliminar Tiendas</a>
+			</nav>
+			<br>
+		</div>
+	</div>
 {% endblock %}

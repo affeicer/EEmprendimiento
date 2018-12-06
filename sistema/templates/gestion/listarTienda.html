@@ -1,0 +1,36 @@
+{% extends "gestion/maqueta.html" %}
+{% block content %}
+<div class="col-xs-12 col-lg-8 mx-auto">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Codigo</td>
+        <td>Nombre</td>
+        <td>Direccion</td>
+        <td>Ciudad</td>
+        <td>Comuna</td>
+        <td>Telefono</td>
+        <td>Correo</td>
+        <td>Acciones</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% if object_list %}
+      {% for lista in object_list %}
+      <tr>
+        <td>{{tienda.codigo}}</td>
+        <td>
+          <a class="btn btn-primary" href="{% url 'actualizar_Tienda' %}">Editar</a>
+          <a class="btn btn-danger" href="{% url 'eliminar_Tienda' %}">Eliminar</a>
+        </td>
+      </tr>
+      {% endfor %}
+
+      {% else %}
+      <h1>No hay Tiendas registradas</h1>
+
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
