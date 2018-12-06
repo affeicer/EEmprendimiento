@@ -6,11 +6,14 @@ class Tienda(models.Model):
 	codigo = models.AutoField(primary_key = True)
 	nombre = models.CharField(max_length = 30)
 	direccion = models.CharField(max_length = 50)
-	ciudad = models.CharField(max_length = 30)
-	comuna = models.CharField(max_length = 30)
+	ciudad = models.CharField(max_length = 100)
+	comuna = models.CharField(max_length = 100)
 	telefono = models.IntegerField()
 	correo = models.EmailField()
 	Estado = models.CharField(max_length = 30)
+
+	def __str__(self):
+		return '{}'.format(self.nombre)
 
 
 class Vendedor(models.Model):

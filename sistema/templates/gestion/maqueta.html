@@ -17,11 +17,27 @@
 					<nav class="navbar">
 						<a href="{% url 'menu_gestion' %}">Inicio</a>
 						<div class="dropdown">
-							<button class="dropbtn">Mantenimiento<i class="fa fa-caret-down"></i></button>
+							<button class="dropbtn">Ver<i class="fa fa-caret-down"></i></button>
 							<div class="dropdown-content">
-								<a href="{% url 'gestion_productos' %}">Gestión de productos</a>
-								<a href="{% url 'gestion_Tienda' %}">Gestión de Tiendas</a>
-								<a href="{% url 'gestion_vendedores' %}">Gestión de vendedores</a>
+								<a href="{% url 'gestion_productos' %}">Ver de productos</a>
+								<a href="{% url 'gestion_Tienda' %}">Ver de Tiendas</a>
+								<a href="{% url 'gestion_vendedores' %}">Ver de vendedores</a>
+							</div>
+						</div>
+						<div class="dropdown">
+							<button class="dropbtn">Crear<i class="fa fa-caret-down"></i></button>
+							<div class="dropdown-content">
+								<a href="{% url 'registrar_producto' %}">Registrar de productos</a>
+								<a href="{% url 'registrar_Tienda' %}">Registrar de Tiendas</a>
+								<a href="{% url 'registrar_vendedor' %}">Registrar de vendedores</a>
+							</div>
+						</div>
+						<div class="dropdown">
+							<button class="dropbtn">Ventas<i class="fa fa-caret-down"></i></button>
+							<div class="dropdown-content">
+								<a href="{% url 'registrar_venta' %}">Registrar de Venta</a>
+								<a href="{% url 'registrar_Tienda' %}">Registrar de Tiendas</a>
+								<a href="{% url 'registrar_vendedor' %}">Registrar de vendedores</a>
 							</div>
 						</div>
 						<a href="#">Ventas</a>
